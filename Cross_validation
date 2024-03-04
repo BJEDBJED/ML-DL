@@ -1,0 +1,18 @@
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import cross_val_score
+
+iris=datasets.load_iris()
+X=iris.data[:,2:]
+y=iris.target
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,stratify=y,random_state=7)
+
+kn3=KNeighborsClassifier(n_neighbors=3)
+kn5=KNeighborsClassifier(n_neighbors=5)
+
+kn3_scores=cross_val_score(kn3,X_train,y_train,cv=4)
+kn5_scores=cross_val_score(kn5,X_train,y_train,cv=4)
+
+kn3_scores.mean(), kn5_scores.mean()
