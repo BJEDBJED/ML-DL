@@ -70,3 +70,8 @@ predicted_job_encoded = model.predict(input_data)
 predicted_job = title.inverse_transform(predicted_job_encoded)
 
 print(f'Best job for someone with level 5 in Krakow is: {predicted_job[0]}')
+
+job_details = df[df['title_encoded'] == predicted_job_encoded[0]].values[0]
+
+print("Details of job:")
+print(job_details)
